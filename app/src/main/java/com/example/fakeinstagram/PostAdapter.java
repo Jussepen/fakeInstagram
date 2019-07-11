@@ -49,6 +49,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.tvTimeStamp.setText(getRelativeTimeAgo(post.getCreatedAt().toString()));
         holder.tvUsername.setText(post.getUser().getUsername());
 
+        holder.ivUserProfile.setParseFile(post.getUser().getParseFile("profilePicture"));
+        holder.ivUserProfile.loadInBackground();
+
 
     }
 
@@ -65,6 +68,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView tvDescription;
         public TextView tvTimeStamp;
         public TextView tvUsername;
+        public ParseImageView ivUserProfile;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -73,6 +77,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivImagePost = itemView.findViewById(R.id.ivImagePost);
             tvDescription= itemView.findViewById(R.id.tvDescription);
             tvUsername = itemView.findViewById(R.id.tvUsername);
+            ivUserProfile = itemView.findViewById(R.id.ivUserProfile);
 
 
             ivImagePost.setOnClickListener(new View.OnClickListener() {
