@@ -7,9 +7,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     public String photoFileName = "photo.jpg";
     File photoFile;
 
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,12 +100,37 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        intent = new Intent(HomeActivity.this, FeedActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.action_compose:
+                        intent = new Intent(HomeActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.action_profile:
+                        intent = new Intent(HomeActivity.this, HomeActivity.class);
+                        startActivity(intent);
+
+                        return true;
+                    default: return true;
+                }
+            }
+        });
+
+
     }
 
     private void savePost(String description, ParseUser currentUser, File file) {
         Post post = new Post();
         post.setKeyDescription(description);
-        post.setParseUser(currentUser);
+        post.setUser(currentUser);
 
         ParseFile photoFile = new ParseFile(file);
         post.setKeyImage(photoFile);
@@ -193,7 +222,7 @@ public class HomeActivity extends AppCompatActivity {
                     return;
                 }
                 for(int i = 0 ; i < posts.size() ; i++){
-                    Log.d("activityHome", "Post" + posts.get(i).getKeyDescription() + "username:" + posts.get(i).getParseUser().getUsername());
+                    Log.d("activityHome", "Post" + posts.get(i).getKeyDescription() + "username:" + posts.get(i).getUser().getUsername());
                 }
 
             }

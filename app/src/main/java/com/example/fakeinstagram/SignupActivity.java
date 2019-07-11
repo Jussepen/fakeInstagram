@@ -58,7 +58,7 @@ public class SignupActivity extends AppCompatActivity {
             public void done(com.parse.ParseException e) {
                     if (e == null ){
                         Log.d("SignupActivity", "New user created");
-                        Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(SignupActivity.this, FeedActivity.class);
                         startActivity(intent);
                     }else {
                         Log.d("SignupActivity", "New user failed");

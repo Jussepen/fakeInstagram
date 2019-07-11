@@ -1,8 +1,12 @@
 package com.example.fakeinstagram;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.fakeinstagram.model.Post;
@@ -18,8 +22,9 @@ public class PostDetail extends AppCompatActivity {
     ParseImageView ivImagePost;
     TextView tvDescription;
     TextView tvTimeStamp;
+    TextView tvUsername;
 
-
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class PostDetail extends AppCompatActivity {
         ivImagePost = findViewById(R.id.ivImagePost);
         tvDescription = findViewById(R.id.tvDescription);
         tvTimeStamp = findViewById(R.id.tvTimeStamp);
+        tvUsername = findViewById(R.id.tvUsername);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -47,6 +53,31 @@ public class PostDetail extends AppCompatActivity {
         ivImagePost.loadInBackground();
         tvDescription.setText(post.getKeyDescription());
         tvTimeStamp.setText( getRelativeTimeAgo(post.getCreatedAt().toString()));
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        intent = new Intent(PostDetail.this, FeedActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.action_compose:
+                        intent = new Intent(PostDetail.this, HomeActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.action_profile:
+                        intent = new Intent(PostDetail.this, HomeActivity.class);
+                        startActivity(intent);
+
+                        return true;
+                    default: return true;
+                }
+            }
+        });
 
     }
 
