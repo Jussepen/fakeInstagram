@@ -95,7 +95,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                             intent = new Intent(context,ProfileActivity.class);
                             context.startActivity(intent);
                         }else {
-
                             intent = new Intent(context, otherUser.class);
                             intent.putExtra(USER_KEY, post);
                             context.startActivity(intent);

@@ -30,12 +30,14 @@ public class SignupActivity extends AppCompatActivity {
         etGetEmail = findViewById(R.id.etGetEmail);
         btnFinishSignup = findViewById(R.id.btnFinishSignup);
 
+
         btnFinishSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newUser();
             }
         });
+
 
     }
 
@@ -47,7 +49,6 @@ public class SignupActivity extends AppCompatActivity {
         String newUsername = etGetUsername.getText().toString();
         String newPassword = etGetPassword.getText().toString();
         String newEmail = etGetEmail.getText().toString();
-
 
         user.setUsername(newUsername);
         user.setPassword(newPassword);

@@ -33,7 +33,6 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private EditText etDescription;
-    private Button btnLogut;
     private ImageView ivImagePost;
     private Button btnCamera;
     private Button btnSubmit;
@@ -51,23 +50,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         etDescription = findViewById(R.id.etDescription);
-        btnLogut = findViewById(R.id.btnLogout);
         btnCamera = findViewById(R.id.btnCamera);
         ivImagePost = findViewById(R.id.ivImagePost);
         btnSubmit = findViewById(R.id.btnSubmit);
 
-
-
-        //queryPost();
-
-        btnLogut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ParseUser.logOut();
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +66,6 @@ public class HomeActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String description = etDescription.getText().toString();
                 if (photoFile == null || ivImagePost.getDrawable() == null){
                     Log.e("HomeActivity", "There is no photo");
@@ -116,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.action_profile:
-                        intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                        intent = new Intent(HomeActivity.this, HomeActivity.class);
                         startActivity(intent);
 
                         return true;
@@ -141,10 +126,6 @@ public class HomeActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null){
                     Log.d("HomeActivity", "post was success");
-
-                    Intent intent = new Intent(HomeActivity.this, FeedActivity.class);
-                    setResult(RESULT_OK, intent);
-                    finish();
 
                 }else{
                     Log.d("HomeActivity", "create post was not a success");
@@ -208,13 +189,10 @@ public class HomeActivity extends AppCompatActivity {
                // Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(rawTakenImage, SOME_WIDTH);
                 // Load the taken image into a preview
                 ivImagePost.setImageBitmap(takenImage);
-
-
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
 

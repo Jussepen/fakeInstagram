@@ -65,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         });
-        
+
 
         tvUsername.setText(ParseUser.getCurrentUser().getUsername());
         ivProfileImage.setParseFile(ParseUser.getCurrentUser().getParseFile("profilePicture"));

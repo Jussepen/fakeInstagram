@@ -15,7 +15,6 @@ public class ParseApp extends Application {
         ParseObject.registerSubclass(Post.class);
 
 
-
         final Parse.Configuration configuration = new Parse.Configuration.Builder(ParseApp.this)
                 .applicationId("myAppId")
                 .clientKey("myMasterKey")
