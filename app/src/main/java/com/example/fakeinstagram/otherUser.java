@@ -24,10 +24,9 @@ public class otherUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_user);
 
-
         ivProfileImage = findViewById(R.id.ivProfileImage);
         tvUsername = findViewById(R.id.tvUsername);
-        
+
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
