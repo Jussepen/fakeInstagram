@@ -2,7 +2,7 @@
 
 **Name of your app** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **16** hours spent in total
 
 ## User Stories
 
@@ -26,11 +26,12 @@ The following **stretch** features are implemented:
 - User Profiles:
   - [ x ] Display the profile photo with each post
   - [ x ] Tapping on a post's username or profile photo goes to that user's profile page
+        - if the user clicks on their own profile image it takes them to their profile Activity
 - [ x ] Run your app on your phone and use the camera to take the photo
 
 The following **additional** features are implemented:
 
-- WIP
+- 
 
 
 ## Video Walkthrough
@@ -38,6 +39,7 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 <img src = 'walkthroughInstaGram.gif' title = 'Video walkrhough' width= '' alt = 'Video Walkthrough' />
+<img src = 'walkthroughpart2.gif' title = 'Video walkrhough' width= '' alt = 'Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
