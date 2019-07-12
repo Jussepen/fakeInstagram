@@ -80,6 +80,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivUserProfile = itemView.findViewById(R.id.ivUserProfile);
 
 
+            ivUserProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position= getAdapterPosition();
+
+                    if (position != RecyclerView.NO_POSITION){
+                        Post post = mPost.get(position);
+                        Intent intent = new Intent(context, otherUser.class);
+                        intent.putExtra(USER_KEY,post);
+                        context.startActivity(intent);
+
+                    }
+                }
+
+            });
+
+
             ivImagePost.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

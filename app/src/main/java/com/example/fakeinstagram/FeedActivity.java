@@ -3,6 +3,7 @@ package com.example.fakeinstagram;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -42,12 +43,12 @@ public class FeedActivity extends AppCompatActivity {
         postAdapter = new PostAdapter(posts);
         rvFeed.setAdapter(postAdapter);
 
-        fetchTimelineAsync(0);
+        fetchTimelineAsync();
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                fetchTimelineAsync(0);
+                fetchTimelineAsync();
             }
         });
 
@@ -67,7 +68,7 @@ public class FeedActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.action_profile:
-                        intent = new Intent(FeedActivity.this, HomeActivity.class);
+                        intent = new Intent(FeedActivity.this, ProfileActivity.class);
                         startActivity(intent);
 
                         return true;
@@ -78,12 +79,12 @@ public class FeedActivity extends AppCompatActivity {
 
     }
 
-    public void fetchTimelineAsync(int page) {
+    public void fetchTimelineAsync() {
         // Send the network request to fetch the updated data
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
         final ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
+        query.include(Post.KEY_USER).addDescendingOrder("createdAt");
         // Specify the object id
         query.findInBackground(new FindCallback<Post>() {
             @Override
@@ -106,7 +107,12 @@ public class FeedActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == RESULT_OK){
+            fetchTimelineAsync();
 
+        }
 
-
+    }
 }

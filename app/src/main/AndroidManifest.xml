@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PostDetail"></activity>
+        <activity android:name=".otherUser"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".PostDetail" />
         <activity android:name=".item_post" />
         <activity android:name=".FeedActivity" />
 

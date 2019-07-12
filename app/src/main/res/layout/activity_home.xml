@@ -8,6 +8,14 @@
     tools:layout_editor_absoluteY="25dp">
 
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/login_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="376dp"
@@ -18,7 +26,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="@android:string/fingerprint_icon_content_description"
+        android:hint="description"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,15 +65,16 @@
     <ImageView
         android:id="@+id/ivImagePost"
         android:layout_width="0dp"
-        android:layout_height="287dp"
+        android:layout_height="300dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
         app:srcCompat="@android:color/holo_red_dark" />
 
     <Button
