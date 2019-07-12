@@ -18,7 +18,6 @@ public class otherUser extends AppCompatActivity {
     TextView tvUsername;
     BottomNavigationView bottomNavigationView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +67,5 @@ public class otherUser extends AppCompatActivity {
         });
 
     }
-
 
 }

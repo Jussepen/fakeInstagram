@@ -50,19 +50,16 @@ public class PostDetail extends AppCompatActivity {
             post = (Post) savedInstanceState.getSerializable("post");
         }
 
-
         ivImagePost.setParseFile(post.getImage());
         ivImagePost.loadInBackground();
         tvDescription.setText(post.getKeyDescription());
         tvTimeStamp.setText( getRelativeTimeAgo(post.getCreatedAt().toString()));
         tvUsername.setText(post.getUser().getUsername());
-
         ivProfile.setParseFile(post.getUser().getParseFile("profilePicture"));
         ivProfile.loadInBackground();
 
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

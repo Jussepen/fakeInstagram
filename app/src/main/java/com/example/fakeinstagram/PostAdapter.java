@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.fakeinstagram.model.Post;
 import com.parse.ParseImageView;
+import com.parse.ParseUser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -84,18 +85,27 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     int position= getAdapterPosition();
-
+                    Intent intent;
                     if (position != RecyclerView.NO_POSITION){
                         Post post = mPost.get(position);
-                        Intent intent = new Intent(context, otherUser.class);
-                        intent.putExtra(USER_KEY,post);
-                        context.startActivity(intent);
+
+                        String postUserId = post.getUser().getUsername();
+
+                        if (postUserId.equals(ParseUser.getCurrentUser().getUsername())){
+                            intent = new Intent(context,ProfileActivity.class);
+                            context.startActivity(intent);
+                        }else {
+
+                            intent = new Intent(context, otherUser.class);
+                            intent.putExtra(USER_KEY, post);
+                            context.startActivity(intent);
+
+                        }
 
                     }
                 }
 
             });
-
 
             ivImagePost.setOnClickListener(new View.OnClickListener() {
                 @Override
